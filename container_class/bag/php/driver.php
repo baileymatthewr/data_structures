@@ -14,24 +14,21 @@ function get_ages(bag &$ages){
         fscanf(STDIN, "%d\n", $user_input);
         if(correct_range($user_input))
             $ages->insert($user_input);
-    } while(correct_range($user_input));
+    } while(correct_range($user_input) && $ages->size() < CAPACITY);
 }
 
 function check_ages(bag &$ages){
     $user_input = 0;
     echo "Type those ages again. Press return after each age:\n";
-    while($ages->size() > 0){
+    do {
         fscanf(STDIN, "%d\n", $user_input);
         if(correct_range($user_input)){
-            if($ages->erase_one($user_input)){
+            if($ages->erase_one($user_input))
                 echo "Yes, I've found that age and removed it.\n";
-            } else {
+            else
                 echo "No, that age does not occur!\n";
-            }
-        } else {
-            break;
         }
-    }
+    } while(correct_range($user_input) && $ages->size() > 0);
 }
 
 
