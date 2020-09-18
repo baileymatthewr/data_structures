@@ -10,9 +10,8 @@ namespace container_bag {
         size_type many_removed = 0;
         for(int i = 0; i < used; ++i){
             if(data[i] == target){
-                data[i] = data[used--];
+                data[i--] = data[used--];
                 ++many_removed;
-                --i; //if this isn't decremented it will skip an index
             }
         }
         return many_removed;
@@ -21,7 +20,7 @@ namespace container_bag {
     bool bag::erase_one(const value_type& target){
         for(int i = 0; i < used; ++i){
             if(data[i] == target){
-                data[i] = data[used--];
+                data[i] = data[--used];
                 return true;
             }
         }

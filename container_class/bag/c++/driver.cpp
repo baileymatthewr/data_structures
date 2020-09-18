@@ -16,24 +16,28 @@ int main(int argc, char* argv[]){
     return EXIT_SUCCESS;
 }
 
+
 void get_ages(bag& ages){
     int user_input;
     cout << "Type the ages in your family." << endl;
     cout << "Type a negative number when you are done:" << endl;
     do {
         cin >> user_input;
-        ages.insert(user_input);
-    } while (user_input >= 0 && ages.size() < ages.CAPACITY);
+        if(user_input >= 0)
+            ages.insert(user_input);
+    } while(user_input >= 0 && ages.size() < ages.CAPACITY);
 }
 
 void check_ages(bag& ages){
     int user_input;
     cout << "Type those ages again. Press return after each age:" << endl;
-    while(ages.size() > 0){
+    do {
         cin >> user_input;
-        if(ages.erase_one(user_input))
-            cout << "Yes, I've found that age and removed it." << endl;
-        else
-            cout << "No, that age does not occur!" << endl;
-    }
+        if(user_input >= 0){
+            if(ages.erase_one(user_input))
+                cout << "Yes, I've found that age and removed it." << endl;
+            else
+                cout << "No, that age does not occur!" << endl;
+        }
+    } while(user_input >= 0 && ages.size() > 0);
 }
