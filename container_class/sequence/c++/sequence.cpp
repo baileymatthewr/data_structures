@@ -15,11 +15,9 @@ namespace container_sequence {
     void sequence::insert(const sequence::value_type& entry){
         assert(size() < CAPACITY);
         if(current_index != used){
-            //shift everything over
-            sequence::size_type last = used++;
-            sequence::size_type start = current_index;
-            while(last != start){
-                data[last--] = data[last - 1];
+            //FIXME: There's a bug here
+            for(sequence::size_type i = ++used; i >= current_index; --i){
+                data[i] = data[i - 1];
             }
         }
         data[current_index] = entry;
@@ -28,11 +26,9 @@ namespace container_sequence {
     void sequence::attach(const sequence::value_type& entry){
         assert(size() < CAPACITY);
         if(current_index != used){
-            //shift everything over
-            sequence::size_type last = used++;
-            sequence::size_type start = current_index + 1;
-            while(last != start){
-                data[last--] = data[last - 1];
+            //FIXME: There's a bug here
+            for(sequence::size_type i = ++used; i > current_index; --i){
+                data[i] = data[i - 1];
             }
         }
         data[++current_index] = entry;
