@@ -10,8 +10,8 @@ namespace container_sequence {
         static const size_type CAPACITY = 30;
         //CONSTRUCTOR
         sequence(){ used = 0; }
-        //Copy Constructor goes here
-        //...
+        //Copy Constructor
+        sequence(const sequence &seq);
         //----------------- MODIFICATION MEMBER FUNCTIONS -------------------
         void start(){ current_index = 0; }
         void advance();
@@ -26,6 +26,11 @@ namespace container_sequence {
         value_type data[CAPACITY];
         size_type used;
         size_type current_index;
+        void shift(
+            const size_type& first,
+            const size_type& last,
+            bool expand=true
+        );
     };
 }
 
