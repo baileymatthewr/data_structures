@@ -1,5 +1,5 @@
 # data_structures
-An independent study of data structures in C++ as described in "4th Edition Data Structures and Other Objects Using C++" adapted for PHP. 
+An independent study of data structures as described in "4th Edition Data Structures and Other Objects Using C++" adapted for PHP. 
 
 ## notes
 1. Examples from the book are used, completed but modified to explore the structures. 
