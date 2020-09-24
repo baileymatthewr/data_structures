@@ -2,7 +2,7 @@
 
 require_once __DIR__."/sequence.php";
 
-
+define('NO_CURRENT', "There is no current item.");
 
 
 function print_menu(){
@@ -45,52 +45,48 @@ function get_number(){
 
 
 //------------------------- script ---------------------------
-int main(int argc, char* argv[]){
-    string tmp = "";
-    sequence test;
-    char choice;
-    echo "I have initialized an empty sequence of real numbers.\n";
-    do {
-        print_menu();
-        choice = toupper(get_user_command());
-        switch(choice){
-            case '!':
-                test.start();
-                break;
-            case '+':
-                test.advance();
-                break;
-            case '?':
-                tmp = (test.is_item()) ? "There is an item." : NO_CURRENT;
-                cout << tmp << endl;
-                break;
-            case 'C':
-                if(test.is_item())
-                    cout << "Current item is: " << test.current() << endl;
-                else
-                    cout << NO_CURRENT << endl;
-                break;
-            case 'P':
-                show_sequence(test);
-                break;
-            case 'S':
-                cout << "Size is " << test.size() << endl;;
-                break;
-            case 'I':
-                test.insert(get_number());
-                break;
-            case 'A':
-                test.attach(get_number());
-                break;
-            case 'R':
-                test.remove_current();
-                break;
-            case 'Q':
-                cout << "Ridicule is the best test of truth." << endl;;
-                break;
-            default:
-                cout << choice << " is invalid." << endl;
-        }
-    } while(choice != 'Q');
-    return EXIT_SUCCESS;
-}
+$test = new sequence();
+$choice = 'Q';
+echo "I have initialized an empty sequence of real numbers.\n";
+do {
+    print_menu();
+    $choice = strtoupper(get_user_command())[0];
+    switch($choice){
+        case '!':
+            $test->start();
+            break;
+        case '+':
+            $test->advance();
+            break;
+        case '?':
+            $tmp = ($test->is_item()) ? "There is an item." : NO_CURRENT;
+            echo "$tmp\n";
+            break;
+        case 'C':
+            if($test->is_item())
+                echo "Current item is: ".$test->current()."\n";
+            else
+                echo NO_CURRENT."\n";
+            break;
+        case 'P':
+            show_sequence(test);
+            break;
+        case 'S':
+            echo "Size is ".$test->size()."\n";
+            break;
+        case 'I':
+            $test->insert(get_number());
+            break;
+        case 'A':
+            $test->attach(get_number());
+            break;
+        case 'R':
+            $test->remove_current();
+            break;
+        case 'Q':
+            echo "Ridicule is the best test of truth.\n";
+            break;
+        default:
+            echo "'$choice' is invalid.\n";
+    }
+} while($choice != 'Q');
