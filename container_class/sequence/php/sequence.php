@@ -8,8 +8,9 @@ class sequence {
     private int $current_index;
 
     function __construct(){
+        $this->current_index = 0;
         $this->used = 0;
-        $this->data = array_fill(0,CAPACITY);
+        $this->data = array_fill(0,CAPACITY,-1);
     }
 
     public function start(){
@@ -21,18 +22,22 @@ class sequence {
             ++$this->current_index;
     }
 
-    public function insert(double &$entry){
+    public function insert($entry){
+        assert(is_numeric($entry));
         assert($this->size() < CAPACITY);
-        if($this->current_index != $this->used)
-            $this->shift(($this->current_index - 1), $this->used++);
+        if($this->current_index < $this->used)
+            $this->shift(($this->current_index - 1), $this->used);
         $this->data[$this->current_index] = $entry;
+        ++$this->used;
     }
 
-    public function attach(double &$entry){
+    public function attach($entry){
+        assert(is_numeric($entry));
         assert($this->size() < CAPACITY);
-        if($this->current_index != $this->used)
-            $this->shift($this->current_index, $this->used++);
+        if($this->current_index < $this->used)
+            $this->shift($this->current_index++, $this->used);
         $this->data[$this->current_index] = $entry;
+        ++$this->used;
     }
 
     public function remove_current(){
@@ -46,7 +51,7 @@ class sequence {
 
     public function is_item(){
         return (
-            $this->current_index >= 0
+            0 <= $this->current_index
             &&
             $this->current_index < $this->used
         );
@@ -56,7 +61,8 @@ class sequence {
         return $this->data[$this->current_index];
     }
 
-    private function shift(double &$first, double &$last, bool $expand=true){
+    private function shift($first, $last, bool $expand=true){
+        assert(is_numeric($first) && is_numeric($last));
         if($expand){
             for($i = $last; $i > $first; --$i){
                 $this->data[$i] = $this->data[$i - 1];

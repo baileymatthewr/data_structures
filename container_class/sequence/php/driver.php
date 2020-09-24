@@ -23,7 +23,7 @@ function print_menu(){
 function get_user_command(){
     $command = 'q';
     echo "Enter choice: ";
-    //cin >> command;
+    fscanf(STDIN, "%s\n", $command);
     return $command;
 }
 
@@ -36,10 +36,10 @@ function get_number(){
     $result = 0;
     do {
         echo "\nPlease enter a real number for the sequence: ";
-        //cin >> result;
+        fscanf(STDIN, "%d\n", $result);
     } while(!is_numeric($result));
     echo $result." has been read.\n";
-    return result;
+    return $result;
 }
 
 
@@ -69,7 +69,7 @@ do {
                 echo NO_CURRENT."\n";
             break;
         case 'P':
-            show_sequence(test);
+            show_sequence($test);
             break;
         case 'S':
             echo "Size is ".$test->size()."\n";
