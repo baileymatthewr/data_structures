@@ -3,9 +3,7 @@
 ## Google Slides
 https://docs.google.com/presentation/d/1qslEaP6yxNHBDAkvoen0IX_2KwOND2MEUV6yreGeJfs/edit?usp=sharing
 
-##The Bag Structure
-
-### About
+## The Bag Structure
 
 The bag structure is a basic container with little functionality. The idea with
 using this structure is to help one understand the basic concept of a
@@ -15,7 +13,7 @@ single item. You can remove all of a certain thing. In the case of C++, which
 is discussed heavily in this book, you must maintain items of the same type in
 this bag.
 
-##The Sequence Structure
+## The Sequence Structure
 
 A sequence is similar to a bag, in that it is a container, but provides a bit
 more functionality. The 'sequence' name hints at the order being of importance.
