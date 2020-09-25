@@ -22,11 +22,24 @@ class sequence {
             ++$this->current_index;
     }
 
+    private function shift($first, $last, bool $expand=true){
+        assert(is_numeric($first) && is_numeric($last));
+        if($expand){
+            for($i = $last; $i > $first; --$i){
+                $this->data[$i] = $this->data[$i - 1];
+            }
+        } else {
+            for($i = $first; $i < $last; ++$i){
+                $this->data[$i] = $this->data[$i + 1];
+            }
+        }
+    }
+
     public function insert($entry){
         assert(is_numeric($entry));
         assert($this->size() < CAPACITY);
         if($this->current_index < $this->used)
-            $this->shift(($this->current_index - 1), $this->used);
+            $this->shift(($this->current_index), $this->used);
         $this->data[$this->current_index] = $entry;
         ++$this->used;
     }
@@ -42,7 +55,7 @@ class sequence {
 
     public function remove_current(){
         if($this->is_item())
-            $this->shift($this->current_index, $this->used--, false);
+            $this->shift($this->current_index, --$this->used, false);
     }
 
     public function size(){
@@ -61,17 +74,6 @@ class sequence {
         return $this->data[$this->current_index];
     }
 
-    private function shift($first, $last, bool $expand=true){
-        assert(is_numeric($first) && is_numeric($last));
-        if($expand){
-            for($i = $last; $i > $first; --$i){
-                $this->data[$i] = $this->data[$i - 1];
-            }
-        } else {
-            for($i = $first; $i < $last; ++$i){
-                $this->data[$i] = $this->data[$i + 1];
-            }
-        }
-    }
+
 }
 

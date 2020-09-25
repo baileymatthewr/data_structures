@@ -37,26 +37,28 @@ namespace container_sequence {
 
     void sequence::insert(const sequence::value_type& entry){
         assert(size() < CAPACITY);
-        if(current_index != used)
-            shift((current_index - 1), used++);
+        if(current_index < used)
+            shift((current_index - 1), used);
         data[current_index] = entry;
+        ++used;
     }
 
     void sequence::attach(const sequence::value_type& entry){
         assert(size() < CAPACITY);
-        if(current_index != used)
-            shift(current_index, used++);
+        if(current_index < used)
+            shift(current_index, used);
         data[current_index] = entry;
+        ++used;
     }
 
     void sequence::remove_current(){
         if(is_item())
-            shift(current_index, used--, false);
+            shift(current_index, --used, false);
     }
 
 
     bool sequence::is_item() const {
-        return (current_index >= 0 && current_index < used);
+        return (0 <= current_index && current_index < used);
     }
 
     sequence::value_type sequence::current() const {
