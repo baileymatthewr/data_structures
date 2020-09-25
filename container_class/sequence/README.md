@@ -8,4 +8,4 @@ The functionality provided to this particular structure deals with that order.
 
 ## Google Slides
 
-<coming soon>
+https://docs.google.com/presentation/d/1qslEaP6yxNHBDAkvoen0IX_2KwOND2MEUV6yreGeJfs/edit?usp=sharing
