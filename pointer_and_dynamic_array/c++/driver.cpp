@@ -27,6 +27,7 @@ int main(int argc, char* argv[]){
     cout << "The average is: " << mean_value << endl;
     compare(numbers, array_size, mean_value);
     cout << "This was a mean program." << endl;
+    delete[] numbers;
     return EXIT_SUCCESS;
 }
 
