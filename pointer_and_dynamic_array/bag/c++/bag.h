@@ -25,10 +25,15 @@ namespace bag_h {
         // const member functions
         size_type size() const { return used; }
         size_type count(const value_type& target) const;
+        void print_final_sequence() const;
+        void fill(size_type n);
     private:
         value_type *data;
         size_type used;
         size_type capacity;
+        // const member private functions
+        double average() const;
+        void compare(double mean) const;
     };
     // nonmember functions
     bag operator +(const bag& b1, const bag& b2);

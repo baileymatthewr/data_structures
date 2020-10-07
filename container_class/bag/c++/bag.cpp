@@ -10,7 +10,7 @@ namespace container_bag {
         size_type many_removed = 0;
         for(int i = 0; i < used; ++i){
             if(data[i] == target){
-                data[i--] = data[used--];
+                data[i--] = data[--used];
                 ++many_removed;
             }
         }

@@ -1,19 +1,19 @@
 #include<iostream>
 #include<cstdlib>
 #include<cassert>
+#include "bag.h"
 
 using namespace std;
+using namespace bag_h;
 
 //forward declarations
-void allocate_doubles(double*& p, size_t& n);
-void fill_array(double data[], size_t n);
-double average(const double data[], size_t n);
-void compare(const double data[], size_t n, double value);
+void allocate_doubles(bag*& b, size_t& n);
+void fill_array(bag& b, size_t n);
 
 
 
 int main(int argc, char* argv[]){
-    double *numbers;
+    bag numbers;
     size_t array_size;
     double mean_value;
 
@@ -21,48 +21,17 @@ int main(int argc, char* argv[]){
     cout << "numbers will be stored in an array of doubles that I allocate.\n";
     allocate_doubles(numbers, array_size);
 
-    fill_array(numbers, array_size);
-    mean_value = average(numbers, array_size);
+    numbers->fill(array_size);
 
-    cout << "The average is: " << mean_value << endl;
-    compare(numbers, array_size, mean_value);
-    cout << "This was a mean program." << endl;
-    delete[] numbers;
+    numbers->print_final_sequence();
     return EXIT_SUCCESS;
 }
 
 
-void allocate_doubles(double*& p, size_t& n){
+void allocate_doubles(bag& b, size_t& n){
     cout << "How many doubles should I allocate?" << endl;
     cout << "Please type a positive integer answer: ";
     cin >> n;
-    p = new double[n];
-}
-
-void fill_array(double data[], size_t n){
-    cout << "Please type " << n << " double numbers: " << endl;
-    for(size_t i = 0; i < n; ++i)
-        cin >> data[i];
-}
-
-double average(const double data[], size_t n){
-    double sum = 0;
-    assert(n > 0);
-    for(size_t i = 0; i < n; ++i)
-        sum += data[i];
-    return (sum/n);
-}
-
-void compare(const double data[], size_t n, double value){
-    for(size_t i = 0; i < n; ++i){
-        cout << data[i];
-        if(data[i] < value)
-            cout << " is less than ";
-        else if(data[i] > value)
-            cout << " is more than ";
-        else
-            cout << " is equal to ";
-        cout << value << endl;
-    }
+    b = new bag(n);
 }
 
