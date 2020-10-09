@@ -35,7 +35,7 @@ class bag {
         $many_removed = 0;
         for($i = 0; $i < $this->used; ++$i){
             if($this->data[$i] == $target){
-                $this->data[$i--] = $data[--$this->used];
+                $this->data[$i--] = $this->data[--$this->used];
                 ++$many_removed;
             }
         }
