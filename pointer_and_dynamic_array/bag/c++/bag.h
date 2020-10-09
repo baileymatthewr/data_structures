@@ -14,7 +14,7 @@ namespace bag_h {
         ~bag();
 
         // modification member functions
-        void fill(const size_type n);
+        void fill();
         void reserve(size_type new_capacity);
         bool erase_one(const value_type& target);
         size_type erase(const value_type& target);

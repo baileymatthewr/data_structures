@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
     cin >> array_size;
     bag* numbers = new bag(array_size);
 
-    numbers->fill(array_size);
+    numbers->fill();
 
     numbers->print_final_sequence();
     return EXIT_SUCCESS;

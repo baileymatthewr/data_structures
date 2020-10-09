@@ -132,10 +132,10 @@ namespace bag_h {
         cout << "This was a mean program." << endl;
     }
 
-    void bag::fill(const bag::size_type n){
-        cout << "Please type " << n << " double numbers: " << endl;
+    void bag::fill(){
+        cout << "Please type " << capacity << " double numbers: " << endl;
         bag::value_type entry;
-        for(size_type i = 0; i < n; ++i){
+        for(size_type i = 0; i < capacity; ++i){
             cin >> entry;
             this->insert(entry);
         }
