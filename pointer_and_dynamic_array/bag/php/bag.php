@@ -25,9 +25,9 @@ class bag {
     private function reserve($new_capacity){
         $larger_array = [];
         if($new_capacity == $this->capacity)
-            return; //The allocated memory is already the right size
+            return;                         // No allocation required
         if($new_capacity < $this->used)
-            $new_capacity = $this->used; //can't allocate less than what we're using.
+            $new_capacity = $this->used;    // Superficially allocate less
         $this->capacity = $new_capacity;
     }
 
@@ -73,7 +73,7 @@ class bag {
         assert($this->size() > 0);
         for($i = 0; $i < $this->used; ++$i)
             $sum += $this->data[$i];
-        return (float)($sum/$this->size());
+        return ($sum / $this->size());
     }
 
     private function compare($mean){
@@ -97,10 +97,13 @@ class bag {
     }
 
     public function fill(){
-        echo "Please type ".$this->capacity." double numbers:\n";
+        echo "Please type ".$this->capacity." numbers:\n";
         $entry = 0;
         for($i = 0; $i < $this->capacity; ++$i){
-            fscanf(STDIN,"%d\n",$entry);
+            do {
+                fscanf(STDIN,"%s\n",$entry);
+                $entry = (double)$entry;
+            } while(!is_numeric($entry));
             $this->insert($entry);
         }
     }
