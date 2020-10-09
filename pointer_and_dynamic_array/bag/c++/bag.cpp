@@ -8,7 +8,7 @@ using namespace std;
 namespace bag_h {
     const bag::size_type bag::DEFAULT_CAPACITY;
 
-    bag::bag(size_type initial_capacity){
+    bag::bag(bag::size_type initial_capacity){
         data = new value_type[initial_capacity];
         capacity = initial_capacity;
         used = 0;
@@ -25,7 +25,7 @@ namespace bag_h {
         delete[] data;
     }
 
-    void bag::reserve(size_type new_capacity){
+    void bag::reserve(bag::size_type new_capacity){
         value_type *larger_array;
         if(new_capacity == capacity)
             return; //The allocated memory is already the right size
@@ -50,7 +50,7 @@ namespace bag_h {
     }
 
     bool bag::erase_one(const value_type& target){
-        for(size_type i = 0; i < used; ++i){
+        for(bag::size_type i = 0; i < used; ++i){
             if(data[i] == target){
                 data[i] = data[--used];
                 return true;
@@ -125,16 +125,16 @@ namespace bag_h {
         }
     }
 
-    void bag::print_final_sequence() const {
+    void bag::print_final_sequence(){
         double mean = this->average();
         cout << "The average is: " << mean << endl;
         this->compare(mean);
         cout << "This was a mean program." << endl;
     }
 
-    void bag::fill(bag::size_type n){
-        cout << "Please type " << n << "double numbers: " << endl;
-        size_type entry;
+    void bag::fill(const bag::size_type n){
+        cout << "Please type " << n << " double numbers: " << endl;
+        bag::value_type entry;
         for(size_type i = 0; i < n; ++i){
             cin >> entry;
             this->insert(entry);

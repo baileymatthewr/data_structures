@@ -1,20 +1,20 @@
 #ifndef BAG_H
 #define BAG_H
-
-using namespace std;
+#include <cstdlib>
 
 namespace bag_h {
     class bag {
     public:
-        typedef int value_type;
+        typedef double value_type;
         typedef std::size_t size_type;
         static const size_type DEFAULT_CAPACITY = 30;
         // constructors & destructor
-        bag(size_type initial_capacity = DEFAULT_CAPACITY);
+        bag(size_type initial_capacity=DEFAULT_CAPACITY);
         bag(const bag& source);
         ~bag();
 
         // modification member functions
+        void fill(const size_type n);
         void reserve(size_type new_capacity);
         bool erase_one(const value_type& target);
         size_type erase(const value_type& target);
@@ -25,8 +25,9 @@ namespace bag_h {
         // const member functions
         size_type size() const { return used; }
         size_type count(const value_type& target) const;
-        void print_final_sequence() const;
-        void fill(size_type n);
+
+        // public library functions
+        void print_final_sequence();
     private:
         value_type *data;
         size_type used;
