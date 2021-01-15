@@ -15,6 +15,7 @@ namespace polynomial_h {
         ~Polynomial(){ delete _coefficients; }
 
         void add_to_coef(double amount, unsigned int k);
+        void sub_to_coef(double amount, unsigned int k);
         void assign_coef(double new_coefficient, unsigned int k);
         void clear();
         void reserve(size_t number);
@@ -37,33 +38,36 @@ namespace polynomial_h {
 
         Polynomial operator+(const Polynomial& p) const {
             if(_degree > p.degree()){
-                Polynomial q = new Polynomial(this);
+                Polynomial q = Polynomial(*this);
                 for(size_t i = 0; i <= q.degree(); ++i){
                     if(i <= p.degree())
                         q.add_to_coef(p.coefficient(i), i);
                 }
                 return q;
             } else {
-                Polynomial q = new Polynomial(p);
+                Polynomial q = Polynomial(p);
                 for(size_t i = 0; i <= q.degree(); ++i){
                     if(i <= _degree)
-                        q.add_to_coef(_coefficient[i], i);
+                        q.add_to_coef(_coefficients[i], i);
                 }
                 return q;
             }
         }
 
         Polynomial operator-(const Polynomial& p) const {
-            Polynomial q = new Polynomial(this);
+            Polynomial q = Polynomial(*this);
+            unsigned int amt = (_degree > p.degree()) ? _degree : p.degree();
+            q.reserve(amt);
             for(size_t i = 0; i <= q.degree(); ++i){
                 if(i <= p.degree())
-                    q.add_to_coef((1 - p.coefficient(i)), i);
+                    q.sub_to_coef(p.coefficient(i), i);
             }
             return q;
         }
 
         Polynomial operator*(const Polynomial& p) const {
             //FOIL - FIRST, OUTSIDE, INSIDE, LAST
+            
         }
 
         double coefficient(unsigned int k) const;

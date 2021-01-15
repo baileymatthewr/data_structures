@@ -36,6 +36,10 @@ namespace polynomial_h {
         _coefficients[k] += amount;
     }
 
+    void Polynomial::sub_to_coef(double amount, unsigned int k){
+        _coefficients[k] -= amount;
+    }
+
     void Polynomial::assign_coef(double new_coefficient, unsigned int k){
         _coefficients[k] = new_coefficient;
     }
@@ -50,19 +54,18 @@ namespace polynomial_h {
 
     void Polynomial::reserve(size_t number){
         if(number > _degree){
-            unsigned int count = _degree + 1;
             double *old_coefficients = _coefficients;
             _coefficients = new double[number];
-            for(size_t i = 0; i < count; ++i)
+            for(size_t i = 0; i <= number; ++i)
                 _coefficients[i] = old_coefficients[i];
             delete old_coefficients;
         }
+        _degree = number;
     }
 
     double Polynomial::eval(double x) const {
         double output = 0.00;
-        unsigned int count = _degree + 1;
-        for(size_t i = 0; i < count; ++i)
+        for(size_t i = 0; i <= _degree; ++i)
             output += _coefficients[i] * pow(x, i);
         return output;
     }
@@ -77,8 +80,7 @@ namespace polynomial_h {
 
     unsigned int Polynomial::next_term(unsigned int k) const {
         unsigned int output = UINT_MAX;
-        unsigned int count = _degree + 1;
-        for(size_t i = k; i < count; ++i){
+        for(size_t i = k; i <= _degree; ++i){
             if(_coefficients[i] != 0.0){
                 output = i;
                 break;
