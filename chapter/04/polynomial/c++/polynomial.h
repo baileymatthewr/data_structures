@@ -10,7 +10,7 @@ namespace polynomial_h {
         unsigned int _degree;
     public:
         Polynomial();
-        Polynomial(double a0);
+        Polynomial(double a0, double a1=0.0, double a2=0.0, double a3=0.0, double a4=0.0, double a5=0.0);
         Polynomial(const Polynomial& source);
         ~Polynomial(){ delete _coefficients; }
 

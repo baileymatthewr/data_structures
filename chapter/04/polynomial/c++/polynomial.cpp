@@ -16,12 +16,47 @@ namespace polynomial_h {
         _coefficients[0] = 0.0;
     }
 
-    Polynomial::Polynomial(double a0){
-        // creates a polynomial with the specified parameter as the coefficient
-        // of the x^0 term
-        _degree = 0;
-        _coefficients = new double[_degree + 1];
-        _coefficients[0] = a0;
+    Polynomial::Polynomial(double a0, double a1, double a2, double a3, double a4, double a5){
+        if(a5 != 0){
+            _degree = 5;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+            _coefficients[1] = a1;
+            _coefficients[2] = a2;
+            _coefficients[3] = a3;
+            _coefficients[4] = a4;
+            _coefficients[5] = a5;
+        } else if(a4 != 0){
+            _degree = 4;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+            _coefficients[1] = a1;
+            _coefficients[2] = a2;
+            _coefficients[3] = a3;
+            _coefficients[4] = a4;
+        } else if(a3 != 0){
+            _degree = 3;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+            _coefficients[1] = a1;
+            _coefficients[2] = a2;
+            _coefficients[3] = a3;
+        } else if(a2 != 0){
+            _degree = 2;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+            _coefficients[1] = a1;
+            _coefficients[2] = a2;
+        } else if(a1 != 0){
+            _degree = 1;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+            _coefficients[1] = a1;
+        } else {
+            _degree = 0;
+            _coefficients = new double[_degree + 1];
+            _coefficients[0] = a0;
+        }
     }
 
     Polynomial::Polynomial(const Polynomial& source){
@@ -53,11 +88,14 @@ namespace polynomial_h {
     }
 
     void Polynomial::reserve(size_t number){
+        size_t degree = _degree;
         if(number > _degree){
             double *old_coefficients = _coefficients;
-            _coefficients = new double[number];
-            for(size_t i = 0; i <= number; ++i)
+            _coefficients = new double[number + 1];
+            for(size_t i = 0; i <= degree; ++i)
                 _coefficients[i] = old_coefficients[i];
+            for(size_t i = degree; i <= number; ++i)
+                _coefficients[i] = 0;
             delete old_coefficients;
         }
         _degree = number;
@@ -98,7 +136,7 @@ namespace polynomial_h {
                 cout << "x";
             }
             cout << ")";
-            if(i == _degree){
+            if(i == 0){
                 cout << endl;
                 break;
             } else {
