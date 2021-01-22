@@ -144,4 +144,14 @@ namespace polynomial_h {
             }
         }
     }
+
+    void Polynomial::correctDegree(){
+        while(_degree > 0){
+            if(_coefficients[_degree] == 0){
+                _degree = _degree - 1;
+            } else {
+                break;
+            }
+        }
+    }
 }

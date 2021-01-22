@@ -44,6 +44,7 @@ namespace polynomial_h {
                     if(i <= p.degree())
                         q.add_to_coef(p.coefficient(i), i);
                 }
+                q.correctDegree();
                 return q;
             } else {
                 Polynomial q = Polynomial(p);
@@ -51,6 +52,7 @@ namespace polynomial_h {
                     if(i <= _degree)
                         q.add_to_coef(_coefficients[i], i);
                 }
+                q.correctDegree();
                 return q;
             }
         }
@@ -63,6 +65,7 @@ namespace polynomial_h {
                 if(i <= p.degree())
                     q.sub_to_coef(p.coefficient(i), i);
             }
+            q.correctDegree();
             return q;
         }
 
@@ -72,11 +75,12 @@ namespace polynomial_h {
             //FOIL - FIRST + OUTSIDE + INSIDE + LAST
             for(size_t i = 0; i <= _degree; ++i){
                 for(size_t j = 0; j <= p.degree(); ++j){
-                    size_t k = i * j;
+                    size_t k = i + j;
                     double tmp = _coefficients[i] * p.coefficient(j);
                     q.add_to_coef(tmp, k);
                 }
             }
+            q.correctDegree();
             return q;
         }
 
@@ -84,6 +88,7 @@ namespace polynomial_h {
         unsigned int degree() const;
         unsigned int next_term(unsigned int k) const;
         void print() const;
+        void correctDegree();
     };
 }
 #endif
