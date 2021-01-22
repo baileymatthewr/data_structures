@@ -14,6 +14,7 @@ namespace polynomial_h {
         Polynomial(const Polynomial& source);
         ~Polynomial(){ delete _coefficients; }
 
+        
         void add_to_coef(double amount, unsigned int k);
         void sub_to_coef(double amount, unsigned int k);
         void assign_coef(double new_coefficient, unsigned int k);
@@ -66,13 +67,23 @@ namespace polynomial_h {
         }
 
         Polynomial operator*(const Polynomial& p) const {
-            //FOIL - FIRST, OUTSIDE, INSIDE, LAST
-            
+            Polynomial q = Polynomial();
+            q.reserve(p.degree() * _degree);
+            //FOIL - FIRST + OUTSIDE + INSIDE + LAST
+            for(size_t i = 0; i <= _degree; ++i){
+                for(size_t j = 0; j <= p.degree(); ++j){
+                    size_t k = i * j;
+                    double tmp = _coefficients[i] * p.coefficient(j);
+                    q.add_to_coef(tmp, k);
+                }
+            }
+            return q;
         }
 
         double coefficient(unsigned int k) const;
         unsigned int degree() const;
         unsigned int next_term(unsigned int k) const;
+        void print() const;
     };
 }
 #endif

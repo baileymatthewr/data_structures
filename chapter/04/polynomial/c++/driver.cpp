@@ -1,44 +1,47 @@
 #include<iostream>
 #include<cstdlib>
 #include<cassert>
-#include "mystring.h"
+#include "polynomial.h"
 
 using namespace std;
+using namespace polynomial_h;
 
-void match(
-    const string& variety,
-    const string& mine,
-    const string& yours
-);
-
-
+void testPolynomialCreation1();
+void testPolynomialCreation2();
 
 int main(int argc, char* argv[]){
-    const string BLANK(" ");
-    string me_first("Demo");
-    string me_last("Program");
-    string you_first, you_last, you;
-    cout << "What is your first name?";
-    cin >> you_first;
-    match("first name", me_first, you_first);
-    cout << "What is your last name?";
-    cin >> you_last;
-    match("last name", me_last, you_last);
-
-    you = you_first + BLANK + you_last;
-    cout << "I am happy to meet you, " << you << "." << endl;
+    testPolynomialCreation1();
+    testPolynomialCreation2();
     return EXIT_SUCCESS;
 }
 
+void testPolynomialCreation1(){
+    cout << "Testing Polynomail Creation:" << endl;
+    cout << "Attempting to build the following:" << endl;
+    cout << "Test 1:  (4) == ";
+    Polynomial p = Polynomial(4.0);
+    p.print();
+    cout << "Outcome: ";
+    if(p.eval(27) == 4.0){
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
+}
 
-
-void match(
-    const string& variety,
-    const string& mine,
-    const string& yours
-){
-    if(mine == yours)
-        cout << "That is the same as my " << variety << '!' << endl;
-    else
-        cout << "My " << variety << " is " << mine << '.' << endl;
+void testPolynomialCreation2(){
+    cout << "Testing Polynomail Creation:" << endl;
+    cout << "Attempting to build the following:" << endl;
+    cout << "Test 2:  (1x^9) == ";
+    Polynomial p = Polynomial();
+    p.reserve(9);
+    p.assign_coef(1.0, 9);
+    p.print();
+    cout << "Outcome: ";
+    cout << p.eval(3) << " == " << 19683.0 << " ";
+    if(p.eval(3) == 19683.0){
+        cout << "PASS" << endl;
+    } else {
+        cout << "FAIL" << endl;
+    }
 }

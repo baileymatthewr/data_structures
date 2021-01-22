@@ -71,7 +71,7 @@ namespace polynomial_h {
     }
 
     double Polynomial::coefficient(unsigned int k) const {
-        return *(_coefficients + k);
+        return _coefficients[k];
     }
 
     unsigned int Polynomial::degree() const {
@@ -87,5 +87,23 @@ namespace polynomial_h {
             }
         }
         return output;
+    }
+
+    void Polynomial::print() const {
+        for(size_t i = _degree; i >= 0; --i){
+            cout << "(" << _coefficients[i];
+            if(i > 1){
+                cout << "x^" << i; 
+            } else if(i == 1){
+                cout << "x";
+            }
+            cout << ")";
+            if(i == _degree){
+                cout << endl;
+                break;
+            } else {
+                cout << " + ";
+            }
+        }
     }
 }

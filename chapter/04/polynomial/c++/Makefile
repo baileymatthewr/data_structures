@@ -27,7 +27,7 @@
 #
 #============================================================================ #
 
-O_FILES=driver.o mystring.o
+O_FILES=driver.o polynomial.o
 CC=g++ -std=c++17
 OUT=program
 ifeq ($(OS),Windows_NT)
