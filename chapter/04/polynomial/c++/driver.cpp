@@ -7,11 +7,14 @@
 using namespace std;
 using namespace polynomial_h;
 
-
+// Function Prototypes
+bool areEquals(double x, double y);
 void testPolynomialCreation1();
 void testPolynomialCreation2();
 void testPolynomialCreation3();
 
+
+// Main
 int main(int argc, char* argv[]){
     testPolynomialCreation1();
     testPolynomialCreation2();
@@ -20,6 +23,11 @@ int main(int argc, char* argv[]){
 }
 
 
+//--------------------- Function Definitions ------------------
+bool areEquals(double x, double y){
+    return std::fabs(x - y) > __DBL_EPSILON__;
+}
+
 void testPolynomialCreation1(){
     cout << "Testing Polynomail Creation:" << endl;
     cout << "Attempting to build the following:" << endl;
@@ -27,7 +35,7 @@ void testPolynomialCreation1(){
     Polynomial p = Polynomial(4.0);
     p.print();
     cout << "Outcome: ";
-    if(p.eval(27) == 4.0){
+    if(areEquals(p.eval(27), 4.0)){
         cout << "PASS" << endl;
     } else {
         cout << "FAIL" << endl;
@@ -44,7 +52,7 @@ void testPolynomialCreation2(){
     p.print();
     cout << "Outcome: ";
     cout << p.eval(3) << " == " << 19683 << " ";
-    if(std::fabs(p.eval(3) - 19683) < __DBL_EPSILON__){
+    if(areEquals(p.eval(3), 19683)){
         cout << "PASS" << endl;
     } else {
         cout << "FAIL" << endl;
@@ -59,7 +67,7 @@ void testPolynomialCreation3(){
     p.print();
     cout << "Outcome: ";
     cout << p.eval(1.2) << " == " << 3.14848 << " ";
-    if(std::fabs(p.eval(1.2) == 3.14848) < __DBL_EPSILON__){
+    if(areEquals(p.eval(1.2), 3.14848)){
         cout << "PASS" << endl;
     } else {
         cout << "FAIL" << endl;
