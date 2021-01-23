@@ -2,6 +2,7 @@
 #define POLYNOMIAL_H
 #include <cstdlib>
 #include <stdexcept>
+#include<cmath>
 
 namespace polynomial_h {
     class Polynomial {
@@ -90,5 +91,18 @@ namespace polynomial_h {
         void print() const;
         void correctDegree();
     };
+
+    // Function Prototypes for Library
+    bool areEquals(double x, double y);
+    void testPolynomialCreation1();
+    void testPolynomialCreation2();
+    void testPolynomialCreation3();
+
+    void testPolynomailAddition1();
+    void testPolynomailAddition2();
+    void testPolynomailSubtraction1();
+    void testPolynomailSubtraction2();
+
+
 }
 #endif
