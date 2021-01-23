@@ -98,11 +98,12 @@ namespace polynomial_h {
     void testPolynomialCreation2();
     void testPolynomialCreation3();
 
-    void testPolynomailAddition1();
-    void testPolynomailAddition2();
-    void testPolynomailSubtraction1();
-    void testPolynomailSubtraction2();
+    void testPolynomialAddition1();
+    void testPolynomialAddition2();
+    void testPolynomialSubtraction1();
+    void testPolynomialSubtraction2();
 
-
+    void testPolynomialMultiplication1();
+    void testPolynomialMultiplication2();
 }
 #endif

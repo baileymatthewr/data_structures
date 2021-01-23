@@ -16,7 +16,14 @@ namespace polynomial_h {
         _coefficients[0] = 0.0;
     }
 
-    Polynomial::Polynomial(double a0, double a1, double a2, double a3, double a4, double a5){
+    Polynomial::Polynomial(
+        double a0, 
+        double a1, 
+        double a2, 
+        double a3, 
+        double a4, 
+        double a5
+    ){
         // This mostly exists as a quick way to create a Polynomial to test
         // if other arithmetic methods work properly.
         if(a5 != 0){
@@ -193,7 +200,7 @@ void testPolynomialCreation1(){
 
 void testPolynomialCreation2(){
     cout << "Test Creation 2:" << endl;
-    cout << "(1x^9) == ";
+    cout << "(x^9) == ";
     Polynomial p = Polynomial();
     p.reserve(9);
     p.assign_coef(1.0, 9);
@@ -215,10 +222,9 @@ void testPolynomialCreation3(){
         cout << "FAIL" << endl;
 }
 
-void testPolynomailAddition1(){
+void testPolynomialAddition1(){
     cout << "Test Addition 1:" << endl;
-    cout << "(2x^4 + 3x^3 + 1x) + (4x^3 + 2x^2 - 8) => 2x^4 + 7x^3 + 2x^2 + x - 8" << endl;
-    cout << "====================================================================" << endl;
+    cout << "(2x^4 + 3x^3 + x) + (4x^3 + 2x^2 - 8) => 2x^4 + 7x^3 + 2x^2 + x - 8" << endl;
     cout << " 2x^4 + 7x^3 + 2x^2 + x - 8 == ";
     Polynomial p = Polynomial(0, 1, 0, 3, 2);
     Polynomial q = Polynomial(-8, 0, 2, 4);
@@ -230,10 +236,9 @@ void testPolynomailAddition1(){
         cout << "FAIL" << endl;
 }
 
-void testPolynomailAddition2(){
+void testPolynomialAddition2(){
     cout << "Test Addition 2:" << endl;
     cout << "(x^5 + 5x^3 + 2x) + (4x^3 - 2x^2 + 8) => x^5 + 9x^3 - 2x^2 + 2x + 8" << endl;
-    cout << "====================================================================" << endl;
     cout << " x^5 + 9x^3 - 2x^2 + 2x + 8 == ";
     Polynomial p = Polynomial(0, 2, 0, 5, 0, 1);
     Polynomial q = Polynomial(8, 0, -2, 4);
@@ -246,10 +251,9 @@ void testPolynomailAddition2(){
 }
 
 
-void testPolynomailSubtraction1(){
+void testPolynomialSubtraction1(){
     cout << "Test Subtraction 1:" << endl;
     cout << "(2x^4 + 7x^3 + 2x^2 + x - 8) - (2x^4 + 3x^3 + 1x) => (4x^3 + 2x^2 - 8)" << endl;
-    cout << "====================================================================" << endl;
     cout << " (4x^3 + 2x^2 - 8) == ";
     Polynomial p = Polynomial(-8, 1, 2, 7, 2);
     Polynomial q = Polynomial(0, 1, 0, 3, 2);
@@ -261,10 +265,9 @@ void testPolynomailSubtraction1(){
         cout << "FAIL" << endl;
 }
 
-void testPolynomailSubtraction2(){
+void testPolynomialSubtraction2(){
     cout << "Test Subtraction 2:" << endl;
     cout << "(x^5 + 9x^3 - 2x^2 + 2x + 8) - (x^5 + 5x^3 + 2x) => (4x^3 - 2x^2 + 8)" << endl;
-    cout << "====================================================================" << endl;
     cout << "(4x^3 - 2x^2 + 8) == ";
     Polynomial p = Polynomial(8, 2, -2, 9, 0, 1);
     Polynomial q = Polynomial(0, 2, 0, 5, 0, 1);
@@ -276,4 +279,33 @@ void testPolynomailSubtraction2(){
         cout << "FAIL" << endl;
 }
 
+void testPolynomialMultiplication1(){
+    cout << "Test Multiplication 1:" << endl;
+    cout << "(x^2 + 1) * (x^2 - 1) => (x^4 - 1)" << endl;
+    cout << "(x^4 - 1) == ";
+    Polynomial p = Polynomial(1, 0, 1);
+    Polynomial q = Polynomial(-1, 0, 1);
+    Polynomial x = p * q;
+    x.print();
+    if(x.eval(1.5) == 4.0625)
+        cout << "PASS" << endl;
+    else
+        cout << "FAIL" << endl;
 }
+
+void testPolynomialMultiplication2(){
+    cout << "Test Multiplication 2:" << endl;
+    cout << "(3x^2 + 1) * (x^4 + 3x^3+ 2x^2 - 1) => (3x^6 + 9x^5 + 7x^4 + 3x^3 - x^2 - 1)" << endl;
+    cout << "(3x^6 + 9x^5 + 7x^4 + 3x^3 - x^2 - 1) == ";
+    Polynomial p = Polynomial(1, 0, 3);
+    Polynomial q = Polynomial(-1, 0, 2, 3, 1);
+    Polynomial x = p * q;
+    x.print();
+    if(x.eval(1.5) == 144.828125)
+        cout << "PASS" << endl;
+    else
+        cout << "FAIL" << endl;
+}
+
+
+} // end of namespace
