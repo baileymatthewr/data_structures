@@ -192,7 +192,7 @@ void testPolynomialCreation1(){
     cout << "(4) == ";
     Polynomial p = Polynomial(4.0);
     p.print();
-    if(p.eval(27) == 4.0)
+    if(p(27) == 4.0)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -205,7 +205,7 @@ void testPolynomialCreation2(){
     p.reserve(9);
     p.assign_coef(1.0, 9);
     p.print();
-    if(p.eval(3) == 19683)
+    if(p(3) == 19683)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -216,7 +216,7 @@ void testPolynomialCreation3(){
     cout << "(3x^5 - 4.3x^4 - 2x + 7) == ";
     Polynomial p = Polynomial(7, -2, 0, 0, -4.3, 3);
     p.print();
-    if(areEquals(p.eval(1.2), 3.14848))
+    if(areEquals(p(1.2), 3.14848))
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -230,7 +230,7 @@ void testPolynomialAddition1(){
     Polynomial q = Polynomial(-8, 0, 2, 4);
     Polynomial x = p + q;
     x.print();
-    if(x.eval(1.5) == 31.75)
+    if(x(1.5) == 31.75)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -244,7 +244,7 @@ void testPolynomialAddition2(){
     Polynomial q = Polynomial(8, 0, -2, 4);
     Polynomial x = p + q;
     x.print();
-    if(x.eval(1.5) == 44.46875)
+    if(x(1.5) == 44.46875)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -259,7 +259,7 @@ void testPolynomialSubtraction1(){
     Polynomial q = Polynomial(0, 1, 0, 3, 2);
     Polynomial x = p - q;
     x.print();
-    if(x.eval(1.5) == 10)
+    if(x(1.5) == 10)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -273,7 +273,7 @@ void testPolynomialSubtraction2(){
     Polynomial q = Polynomial(0, 2, 0, 5, 0, 1);
     Polynomial x = p - q;
     x.print();
-    if(x.eval(1.5) == 17)
+    if(x(1.5) == 17)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -287,7 +287,7 @@ void testPolynomialMultiplication1(){
     Polynomial q = Polynomial(-1, 0, 1);
     Polynomial x = p * q;
     x.print();
-    if(x.eval(1.5) == 4.0625)
+    if(x(1.5) == 4.0625)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
@@ -301,7 +301,7 @@ void testPolynomialMultiplication2(){
     Polynomial q = Polynomial(-1, 0, 2, 3, 1);
     Polynomial x = p * q;
     x.print();
-    if(x.eval(1.5) == 144.828125)
+    if(x(1.5) == 144.828125)
         cout << "PASS" << endl;
     else
         cout << "FAIL" << endl;
