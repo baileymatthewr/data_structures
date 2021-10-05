@@ -1,0 +1,7 @@
+# Chapter 5: Linked Lists
+"The simplest way to interrelate or link a set of elements is to line them up in
+a single list... For, in this case, only a single link is needed for each
+element to refer to its successor."
+    - Niklaus Wirth, Algorithms + Data Structures = Programs
+
+
